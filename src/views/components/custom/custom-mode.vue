@@ -1,11 +1,3 @@
-<!--
- * @Author: 'hongjilin' '1044580210@qq.com'
- * @Date: 2022-09-01 16:05:16
- * @LastEditors: 'hongjilin' '1044580210@qq.com'
- * @LastEditTime: 2022-09-08 15:55:38
- * @FilePath: \插件开发\src\views\components\custom-mode.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <div class="custom-mode-box">
     <div>(此页面样式未优化,先开放部分功能用以过渡) </div>

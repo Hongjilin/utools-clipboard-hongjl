@@ -1,11 +1,3 @@
-<!--
- * @Author: 'hongjilin' '1044580210@qq.com'
- * @Date: 2022-09-01 11:58:00
- * @LastEditors: 'hongjilin' '1044580210@qq.com'
- * @LastEditTime: 2022-09-05 19:48:37
- * @FilePath: \插件开发\src\views\components\footer-tools.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <div :class="{footer:true,'footer-active':showbatch}">
     <!-- 此处相对路径要按照index.html为准，而不是当前vue组件的位置 -->
