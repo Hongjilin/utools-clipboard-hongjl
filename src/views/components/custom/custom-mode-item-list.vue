@@ -120,7 +120,7 @@ module.exports = {
         } else {
                  console.log(this.lists.length >= this.lazyIndex,this.lists.length , this.lazyIndex,"zxczxczxczxczxczxzx")
 
-             this.messageConfig({type:'success',msg:'到底了~'})
+            //  this.messageConfig({type:'success',msg:'到底了~'})
         }
       }
     },

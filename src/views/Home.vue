@@ -209,7 +209,7 @@ module.exports = {
               this.filterLists();
             }, 500)();
           } else {
-            this.messageConfig({ type: "success", msg: "到底了~" });
+            // this.messageConfig({ type: "success", msg: "到底了~" });
           }
         }
       });
