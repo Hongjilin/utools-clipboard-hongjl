@@ -1,11 +1,3 @@
-<!--
- * @Author: 'hongjilin' '1044580210@qq.com'
- * @Date: 2022-08-29 11:05:02
- * @LastEditors: 'hongjilin' '1044580210@qq.com'
- * @LastEditTime: 2022-09-08 17:03:07
- * @FilePath: \插件开发\src\views\components\item-list.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
   <div id="item-list-box" class="item-list-box" @mouseup="mouseUp" @mousedown="mouseDown" @blur="mouseUp">
     <!-- <div class="list-layout"></div> -->
@@ -34,7 +26,7 @@
           <template v-if="item.type === 'text'">
             <div
               class=" clip-item-info-data-main-text"
-            >{{ item.data.split(`\n`).join(`\n`) }}</div>
+            >{{ item.data }}</div>
           </template>
          <template v-else-if="item.type === 'image'">
             <div class="clip-item-info-data-img-box">
@@ -47,7 +39,7 @@
               <!-- 如果是svg或者html形式的图片（前面放出了图片兼容） -->
               <prism-editor
                 class="my-editor height-200"
-                v-model="item.data.split(`\n`).join(`\n`)"
+                v-model="item.data"
                 :highlight="highlighter"
                 line-numbers
               ></prism-editor>

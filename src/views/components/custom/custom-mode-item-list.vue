@@ -25,13 +25,13 @@
       <div class="clip-item-info">
         <div class="clip-item-info-data">
           <template v-if="item.type === 'text'">
-            <div class="clip-item-info-data-main-text">{{ item.data.split(`\n`).join(`\n`)}}</div>
+            <div class="clip-item-info-data-main-text">{{ item.data}}</div>
           </template>
           <template v-if="item.type === 'html'">
             <div class="clip-item-info-data-main">
               <prism-editor
                 class="my-editor height-200"
-                v-model="item.data.split(`\n`).join(`\n`)"
+                v-model="item.data"
                 :highlight="highlighter"
                 line-numbers
               ></prism-editor>
@@ -117,7 +117,7 @@ module.exports = {
           this.throttle(() => {
             this.lazyIndex += 8;
             this.lazyLists = this.lists.slice(0, this.lazyIndex);
-          }, 1000)();
+          }, 500)();
         } else {
              this.messageConfig({type:'success',msg:'到底了~'})
         }
