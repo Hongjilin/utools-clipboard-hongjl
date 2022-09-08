@@ -7,7 +7,9 @@
         <div class="layout" @click="closeDetails"></div>
       </div>
     </transition>
+
     <message v-if="showMessage" :config="messageConfigData"></message>
+    <loading v-if="loading" :config="messageConfigData"></loading>
     <confirm v-if="showConfim" :config="confirmConfigData" @close="confirmClose"></confirm>
     <readme v-if="showPageName=='readme'" @close-readme="closeReadme"></readme>
     <!-- 查看详情时不隐藏该列表 -->
@@ -46,7 +48,8 @@ module.exports = {
     CustomMode: httpVueLoader("./components/custom/custom-mode.vue"),
     Readme: httpVueLoader("./components/commons/readme.vue"),
     Confirm: httpVueLoader("./components/commons/confirm.vue"),
-    Message: httpVueLoader("./components/commons/message.vue")
+    Message: httpVueLoader("./components/commons/message.vue"),
+    Loading: httpVueLoader("./components/commons/loading.vue")
   },
 
   provide() {
@@ -56,12 +59,14 @@ module.exports = {
       highlighter: this.highlighter, //代码块所需函数
       showDetails: this.showDetails, //控制显示详情界面的函数
       messageConfig: this.messageConfig, //提示弹窗注入
+      loadingConfig: this.loadingConfig, //加载组件注入
       copy: this.copy //提示弹窗注入
     };
   },
 
   data() {
     return {
+      loading:false,
       searchInput: "",
       dbLists: [], //存放从存储库中取到的list
       lists: [], //存放筛选后的list
@@ -99,8 +104,11 @@ module.exports = {
     }
   },
   methods: {
-    /* *********************************************** S：界面开关  *********************************************** */
 
+    /* *********************************************** S：界面开关  *********************************************** */
+    loadingConfig(flag=false){
+        this.loading=flag
+    },
     //关闭说明文档
     closeReadme() {
       this.showPageName = "lists";
@@ -190,6 +198,13 @@ module.exports = {
         if (scrollTop + windowHeight >= scrollHeight) {
           if (this.lazyLists.length >= this.lazyIndex) {
             this.throttle(() => {
+              this.loadingConfig(true)
+              //模拟loading效果,并清理自身定时器
+             let timer= setTimeout(()=>{
+              this.loadingConfig(false)
+                clearTimeout(timer)
+                 timer=null
+              },500)
               this.lazyIndex += 8;
               this.filterLists();
             }, 500)();

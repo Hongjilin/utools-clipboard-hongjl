@@ -3,18 +3,10 @@
 
 //注入less,需要等媒体查询后（他并不是同步生效的），更换变量主题后再导入一次重新渲染
 .imports() {
-  /* 列表组件，在此less中再分派给子组件样式 */
-  @import './dispersed/item-lists/item-list.less';
-   /* 头部导航组件 */
-  @import './dispersed/header.less';
- /* 定制页面 */
-  @import './dispersed/custom-mode.less';
-   /* 说明书页面 */
-  @import './dispersed/readme.less';
+  /* 列表组件*/
+  @import './dispersed/index.less';
   /* 通用组件的 */
-  @import './commons/confirm.less';//二次弹窗样式
-  @import './commons/prism.less';//代码高亮库的样式
-  @import './commons/message.less';//提示弹窗样式
+  @import './commons/index.less';
 }
 
 

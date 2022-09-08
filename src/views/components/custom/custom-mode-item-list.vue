@@ -58,7 +58,7 @@
 <script>
 const formatDateToString = window.formatDateToString;
 module.exports = {
-  inject: ["highlighter", "copy",'messageConfig'],
+  inject: ["highlighter", "copy",'messageConfig','loadingConfig'],
   provide() {
     //定义全局
     return {
@@ -115,6 +115,13 @@ module.exports = {
       if (scrollTop + windowHeight >= scrollHeight) {
         if (this.lists.length >= this.lazyIndex) {
           this.throttle(() => {
+            this.loadingConfig(true)
+              //模拟loading效果,并清理自身定时器
+             let timer= setTimeout(()=>{
+              this.loadingConfig(false)
+                clearTimeout(timer)
+                 timer=null
+              },500)
             this.lazyIndex += 8;
             this.lazyLists = this.lists.slice(0, this.lazyIndex);
           }, 500)();
@@ -138,6 +145,7 @@ module.exports = {
           callback.apply(this, arguments);
           //清理定时器
           clearTimeout(timer);
+          timer=null
         }, delay);
       };
     },
