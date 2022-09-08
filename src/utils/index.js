@@ -108,7 +108,7 @@ const formatDateToString = (timestamp) => {
   return '刚刚'
 }
 
-//转换时间戳为字符串显示格式  --时分秒的形式
+//5转换时间戳为字符串显示格式  --时分秒的形式
 const formatDateToTime = (timestamp) => {
     //获取时间差
     const timeDifference = new Date().getTime() - new Date(timestamp).getTime()
@@ -130,10 +130,24 @@ const formatDateToTime = (timestamp) => {
   // return `${hours}:${min}:${sec}`
 }
 
+    // 节流
+const throttle=(callback, delay)=>{
+  let timer
+  return function (){
+      if (timer){ return }
+      timer = setTimeout(()=>{
+      // 此处设置apply 是为了保证函数上下文不改变
+       callback.apply(this, arguments)
+       //清理定时器
+      clearTimeout(timer)
+      }, delay)
+  }
+}
 module.exports = {
   scheduleClipboard,
   copy,
   paste,
   formatDateToString,
   formatDateToTime,
+  throttle
 }

@@ -7,7 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <div class="home">
+  <div id="home" class="home">
     <!-- transition实现动画效果 -->
     <transition name="fade">
       <div class="detail-box" v-if="showPageName=='details'">
@@ -36,6 +36,7 @@
           @show-details="showDetails"
           :dblists="dbLists"
           :lists="lists"
+          id="lists"
         ></item-list>
       </div>
     </div>
@@ -59,10 +60,10 @@ module.exports = {
   provide() {//定义全局注入
     return {
       confirmConfig: this.confirmConfig,//二次弹窗控制函数注入
-      highlighter:this.highlighter,//代码块所需函数
-      showDetails:this.showDetails,//控制显示详情界面的函数
-      messageConfig:this.messageConfig,//提示弹窗注入
-      copy:this.copy,//提示弹窗注入
+      highlighter: this.highlighter,//代码块所需函数
+      showDetails: this.showDetails,//控制显示详情界面的函数
+      messageConfig: this.messageConfig,//提示弹窗注入
+      copy: this.copy,//提示弹窗注入
     }
   },
 
@@ -71,6 +72,8 @@ module.exports = {
       searchInput: '',
       dbLists: [],//存放从存储库中取到的list
       lists: [],//存放筛选后的list
+      lazyLists: [],//存放懒加载筛选后的list
+      lazyIndex: 8,//当前懒加载下标
       navTabType: 'all',
       details: {},//详情数据
       showCustom: false,//是否展示自定义tab
@@ -78,7 +81,7 @@ module.exports = {
       showMessage: false,//是否展示信息提示
       showPageName: 'lists',//当前展示的页面  
       confirmConfigData: {},//展示二次弹窗，且写入配置项
-      messageConfigData:{}//展示信息提示，且写入配置项
+      messageConfigData: {}//展示信息提示，且写入配置项
     };
   },
   mounted() {
@@ -86,6 +89,7 @@ module.exports = {
     this.dbLists = window.DB.dataBase.data
     this.lists = window.DB.dataBase.data
     this.addInterVal()
+    this.lazyPage()
   },
   watch: {
     navTabType: {
@@ -140,7 +144,7 @@ module.exports = {
       setInterval(() => {
         //获取最新的一个数据
         const now = window.DB.dataBase.data[0]
-       if (lastCopy?.id !== now?.id)  {
+        if (lastCopy?.id !== now?.id) {
           console.log('定时器进行更新', window.DB.dataBase.data)
           // 有更新
           this.dbLists = window.DB.dataBase.data
@@ -152,17 +156,52 @@ module.exports = {
 
     //筛选显示数组列表
     filterLists() {
+      console.log('筛选！！！！！！！！！！！！！！！')
       const val = this.searchInput
       const type = this.navTabType
+      let lists = []
       //如果分类是全部，就只筛选搜索框内容
       if (type === 'all') {
-        this.lists = this.dbLists.filter(item => item.data.indexOf(val) != -1)
-      } else if(type === 'html'||type === 'text'){
+        this.lazyLists = this.dbLists.filter(item => item.data.indexOf(val) != -1)
+      } else if (type === 'html' || type === 'text') {
         //如果是文本或者html,筛选到一起
-        this.lists = this.dbLists.filter(item => item.data.indexOf(val) != -1 && (item.type === type||item.type === 'html'))
-        }else{
+         this.lazyLists  = this.dbLists.filter(item => item.data.indexOf(val) != -1 && (item.type === type || item.type === 'html'))
+      } else {
         //如果不是全部，就都要进行搜索
-        this.lists = this.dbLists.filter(item => item.data.indexOf(val) != -1 && item.type === type)
+         this.lazyLists  = this.dbLists.filter(item => item.data.indexOf(val) != -1 && item.type === type)
+      }
+      this.lists =  this.lazyLists.splice(0, this.lazyIndex)
+    },
+
+    lazyPage() {
+      window.addEventListener("scroll", () => {
+        //变量scrollTop是滚动条滚动时，距离顶部的距离
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        //变量windowHeight是可视区的高度
+        var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        //变量scrollHeight是滚动条的总高度  --防止误差，少一点
+        var scrollHeight = (document.documentElement.scrollHeight || document.body.scrollHeight) - 1;
+        //滚动条到底部的条件
+        if (scrollTop + windowHeight >= scrollHeight && this.lazyLists.length>=this.lazyIndex ) {
+          this.throttle(() => {
+            this.lazyIndex += 8
+            this.filterLists()
+          }, 1000)()
+        }
+      })
+    },
+    // 节流
+    throttle(callback, delay) {
+      let timer
+      return function () {
+        console.log()
+        if (timer) { return }
+        timer = setTimeout(() => {
+          // 此处设置apply 是为了保证函数上下文不改变
+          callback.apply(this, arguments)
+          //清理定时器
+          clearTimeout(timer)
+        }, delay)
       }
     },
     //初始化db数据的时候要重新筛选当前剪切板列表
@@ -179,17 +218,17 @@ module.exports = {
       window.confirmFunc = fn
       console.log("全局注入的函数")
     },
-    messageConfig(config = {},time=800){
-      this.messageConfigData=config
-      this.showMessage=true
-      setTimeout(()=>{
-        this.showMessage=false
-      },time)
+    messageConfig(config = {}, time = 800) {
+      this.messageConfigData = config
+      this.showMessage = true
+      setTimeout(() => {
+        this.showMessage = false
+      }, time)
     },
     //二次封装的copy  --带提示
-    copy(item){
+    copy(item) {
       window.copy(item)
-      this.messageConfig({type:'success',msg:'复制成功'})
+      this.messageConfig({ type: 'success', msg: '复制成功' })
     },
     //这是代码块所需的方法
     highlighter(code) {

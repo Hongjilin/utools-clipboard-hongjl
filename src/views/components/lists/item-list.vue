@@ -7,7 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <div class="item-list-box" @mouseup="mouseUp" @mousedown="mouseDown" @blur="mouseUp">
+  <div id="item-list-box" class="item-list-box" @mouseup="mouseUp" @mousedown="mouseDown" @blur="mouseUp">
     <!-- <div class="list-layout"></div> -->
     <div
       class="clip-item"
@@ -253,6 +253,7 @@ module.exports = {
           });
       });
     },
+    /* *********************************************** S：监听事件！！  *********************************************** */
     //按钮按下事件的处理
     EventListenerKeyDownFunc(e) {
       const { key, ctrlKey, metaKey, altKey } = e;
@@ -323,6 +324,7 @@ module.exports = {
       window.isCtrlKey = false;
       window.isShift = false;
     },
+
     //添加监听键盘事件，同时将记录当前按下的键位
     initAddEventListenerKey() {
       window.addEventListener("keydown", this.EventListenerKeyDownFunc, false);

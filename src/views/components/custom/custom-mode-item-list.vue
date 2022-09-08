@@ -79,6 +79,7 @@ module.exports = {
   data() {
     return {
       activeIndex: 0,//默认选中列表第一位
+      lazyIndex: 8,//当前懒加载下标
     }
 
   },

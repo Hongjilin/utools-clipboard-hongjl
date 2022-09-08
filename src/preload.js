@@ -1,11 +1,12 @@
 //引入封装的工具函数
-const {
+ const utils= require('./utils/index')
+ const {
   scheduleClipboard,
   copy,
   paste,
   formatDateToString,
   formatDateToTime,
-} = require('./utils/index')
+}=utils
 const crypto = require('crypto') //加密工具
 const { clipboard } = require('electron') //
 
@@ -40,9 +41,9 @@ const toTop = () => (document.scrollingElement.scrollTop = 0)
 let num=0
 //每次进入都会执行的方法,用作一些初始操作
 utools.onPluginEnter(() => {
-  num++
-  const data={num,data:'测试db数据存入1',xx:'xxxxxx'}
-  uTools_db.put('config',data)
+  // num++
+  // const data={num,data:'测试db数据存入1',xx:'xxxxxx'}
+  // uTools_db.put('config',data)
   document.querySelector('#nav-search-input').select() // 进入插件将搜索框内容全选
   focus()
   toTop()
@@ -94,6 +95,7 @@ window.DB = DB
 window.uTools_db=uTools_db
 //将uTools的复制粘贴api封装后挂在到全局上
 window.copy = copy
+window.utils = utils
 window.onlyPasteThenClear = onlyPasteThenClear
 window.paste = paste
 //挂在一些utools的api到全局上
