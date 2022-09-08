@@ -1,0 +1,42 @@
+//导入初始化页面的less文件
+@import './init/init.less';
+
+//注入less,需要等媒体查询后（他并不是同步生效的），更换变量主题后再导入一次重新渲染
+.imports() {
+  /* 列表组件，在此less中再分派给子组件样式 */
+  @import './dispersed/item-lists/item-list.less';
+   /* 头部导航组件 */
+  @import './dispersed/header.less';
+ /* 定制页面 */
+  @import './dispersed/custom-mode.less';
+   /* 说明书页面 */
+  @import './dispersed/readme.less';
+  /* 通用组件的 */
+  @import './commons/confirm.less';//二次弹窗样式
+  @import './commons/prism.less';//代码高亮库的样式
+  @import './commons/message.less';//提示弹窗样式
+}
+
+
+//停止HTML滚动的样式  --在js中主动添加or移除此样式
+.overHTML {
+  overflow: hidden;
+}
+
+//浅色模式的样式配置  -- --浏览器借助媒介查询语法来检测当前系统的主题
+@media (prefers-color-scheme: light) {
+  .light-scheme();
+  .imports();
+}
+
+//获取不到主题时的适配方案。这边默认就是根据浅色模式
+@media (prefers-color-scheme: no-preference) {
+  .light-scheme();
+  .imports();
+}
+
+//黑暗模式的颜色配置   --黑暗模式后续再设计，全部沿用浅色
+@media (prefers-color-scheme: dark) {
+  .dark-scheme();
+  .imports();
+}

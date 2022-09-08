@@ -1,0 +1,31 @@
+.clip-file-list-box {
+
+  display: flex;
+
+.clip-file-list{
+  width: @item-main-with;
+  max-height: @item-max-height;
+  // overflow-y: scroll;
+  overflow-x: hidden;
+
+  .clip-file-list-item {
+    display: flex;
+    justify-content: flex-start;
+
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+
+    &:hover {
+      text-decoration: underline;
+      color: @primary-color;
+    }
+
+    .clip-file-list-item-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+}
+}

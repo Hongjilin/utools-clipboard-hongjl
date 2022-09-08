@@ -1,0 +1,37 @@
+<!--
+ * @Author: 'hongjilin' '1044580210@qq.com'
+ * @Date: 2022-08-19 19:18:21
+ * @LastEditors: 'hongjilin' '1044580210@qq.com'
+ * @LastEditTime: 2022-08-28 10:47:48
+ * @FilePath: \dede\src\index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- ps：less引入要在script之前（less.js会对less文件进行编译），否则无效，这里可以做一些操作，也可以不用less -->
+  <link rel="stylesheet/less" type="text/css" href="./views/style/index.less">
+  <script src="./lib/vue.min.js"></script>
+  <script src="./lib/httpVueLoader.js"></script>
+  <!-- 引入代码块库 -->
+  <script src="./lib/prism/prismeditor.js"></script>
+  <link rel="stylesheet" href="./lib/prism/prismeditor.min.css" />
+  <script src="./lib/prism/prism.js"></script>
+  <link rel="stylesheet" href="./lib/prism/prism-tomorrow.css" />
+  <script src="./lib/less.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <Home :key="homeKey"></Home>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>

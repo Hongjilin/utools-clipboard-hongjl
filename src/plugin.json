@@ -1,0 +1,28 @@
+{
+  "name": "clipboard-hongjl",
+  "version": "1.0.0",
+  "pluginName": "剪切板",
+  "author": "努力学习的汪",
+  "homepage": "https://gitee.com/hongjilin",
+  "main":"index.html",
+  "preload": "preload.js",
+  "unpack": "@(platform*|*.exe)",
+  "logo": "logo.png",
+  "platform": [
+    "win32",
+    "darwin",
+    "linux"
+  ],
+  "pluginSetting": {
+    "single": false
+  },
+  "features": [
+    {
+      "code": "clipboard-hongjl",
+      "explain": "剪切板",
+      "cmds": [
+        "剪切板开发","剪切板"
+      ]
+    }
+  ]
+}

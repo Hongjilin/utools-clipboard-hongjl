@@ -1,0 +1,104 @@
+.confirm-box {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+
+  /*设置动画*/
+  .fade-enter,
+  .fade-leave-to {
+    transform: translateX(-100%);
+    border-radius: 100%;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all .5s;
+  }
+
+  .fade-enter-to {
+    transform: translateX(0);
+    // opacity: .9;
+    border-radius: 0px;
+  }
+
+  .transition-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .layout {
+      height: 100%;
+      width: 100%;
+      color: @text-color;
+      background:@text-bg-color;
+      opacity: .5 !important;
+    }
+    .confirm {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // opacity: . !important;
+      .confirm-windows{
+        position: relative;
+        border-width: 0px 2px 2px 2px; //边框宽度设置为1px
+        box-shadow: 0px 0px 3px @shadow-color; //阴影效果
+
+        border-radius: 10px;
+        overflow: hidden;
+        width: 350px;
+        height: 150px;
+        background:@bg-color;
+        .confirm-windows-header{
+          display: flex;
+          align-items: center;
+          padding-left: 10px;
+          height: 30px;
+          background: @bg-confirm-header-color;
+        }
+        .confirm-windows-main{
+          min-height: 50px;
+          padding: 10px;
+        }
+        .confirm-windows-btn{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          bottom: 10px;
+          left: 50%;
+
+          transform: translateX(-50%);
+          div{
+            height: 30px;
+            width: 45px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:hover{
+              box-shadow: 0px 0px 2px @shadow-color; //阴影效果
+              transform: all 0.3s;
+            }
+          }
+          .close{
+            border:@text-color;
+            // border:1px solid @text-color;
+            box-shadow: 0px 0px 1px @shadow-color; //阴影效果
+            margin-left: 10px;
+          }
+          .primary{
+            color:  @primary-text-color;
+           background-color:  @primary-color;
+          }
+        }
+      }
+
+    }
+  }
+
+}

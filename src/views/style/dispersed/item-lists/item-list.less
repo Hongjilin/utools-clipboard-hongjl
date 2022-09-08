@@ -1,0 +1,255 @@
+//引入其他派发的子组件样式
+@import './item-list-file.less';
+@import './item-list-detail.less';
+@import './item-list-btn.less';
+
+.item-list-box {
+  background: @bg-color;
+
+  .clip-item {
+    transition: all 0.1s; //动画过渡效果，优化体验
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    position: relative;
+    cursor: pointer;
+    //设置每行的边框
+    border-style: hidden; //隐藏边框
+    border-width: 0px; //边框宽度设置为1px
+    border-color: @border-color; //边框使用配置的变量--跟随当前utools系统
+
+    //选中激活时的样式
+    &.active {
+      border-color: @border-active-color;
+      background-color: @bg-list-active-color; //激活时使用配置的背景颜色
+      border-style: hidden solid hidden solid; //每行的左右有宽度，其他的隐藏
+      border-width: 0px 2px 0px 2px; //边框宽度设置为1px
+      box-shadow: 0px 0px 3px @shadow-color; //阴影效果
+    }
+
+    &.activeBatch {
+      border-color: @border-active-color;
+      background-color: @bg-list-active-batch-color; //激活时使用配置的背景颜色
+      border-style: hidden solid hidden solid; //每行的左右有宽度，其他的隐藏
+      border-width: 0px 2px 0px 2px; //边框宽度设置为1px
+      box-shadow: 0px 0px 3px @shadow-color; //阴影效果
+    }
+
+
+    //每行中的时间样式
+    .clip-item-time {
+      margin-left: 5px;
+      min-width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: @bg-item-time-color;
+      opacity: .6;
+      padding: 5px;
+      border-radius: 5px;
+
+    }
+    //每行中的内容样式
+    .clip-item-info {
+      font-size: 14px;
+      padding: 10px;
+      min-width: 58%;
+
+      .clip-item-info-data {
+        display: flex;
+        max-height:  @item-max-height;
+        width: 470px;
+        align-items: center;
+
+
+        //按钮样式
+        .btn-show-detail {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          word-break: break-all;
+          white-space: pre-wrap;
+          flex-direction: column;
+          //  background-color: @text-bg-color;
+          padding: 3px;
+          color: @border-active-color;
+
+          &:hover {
+            border-radius: 10px;
+            border-width: 0px 1px 0px 1px; //边框宽度设置为1px
+            box-shadow: 0px 0px 1px @shadow-color; //阴影效果
+          }
+        }
+
+        padding: 5px;
+        color: @text-color;
+
+        .clip-item-info-data-main-text {
+          padding: 10px;
+          height: 100%;
+          overflow-y: scroll;
+          overflow-x: hidden;
+          max-height: @item-max-height;
+        }
+
+        .clip-item-info-data-main {
+          border-radius: 20px;
+          width: @item-main-with;
+          word-break: break-all;
+          white-space: pre-wrap;
+          flex-direction: column;
+        }
+        .clip-item-info-data-img-box {
+        position: relative;
+         
+
+          .clip-item-info-data-img-size {
+            position: absolute;
+            right: -40px;
+            top: 0;
+            background-color: @bg-color;
+          }
+
+          //每行中的图片样式
+          .clip-item-info-data-img {
+            max-height: 140px;
+            max-width: 90%;
+            box-shadow: 0px 0px 3px @shadow-color;
+          }
+
+        }
+
+
+      }
+    }
+    .clip-item-info-failure {
+      font-size: 14px;
+      padding: 10px;
+      min-width: 80%;
+
+      .clip-item-info-data {
+        display: flex;
+        max-height:  @item-max-height;
+        width: @item-main-with-failure;
+        align-items: center;
+
+        //按钮样式
+        .btn-show-detail {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          word-break: break-all;
+          white-space: pre-wrap;
+          flex-direction: column;
+          //  background-color: @text-bg-color;
+          padding: 3px;
+          color: @border-active-color;
+
+          &:hover {
+            border-radius: 10px;
+            border-width: 0px 1px 0px 1px; //边框宽度设置为1px
+            box-shadow: 0px 0px 1px @shadow-color; //阴影效果
+          }
+        }
+
+        padding: 5px;
+        color: @text-color;
+
+        .clip-item-info-data-main-text {
+          padding: 10px;
+          height: 100%;
+          overflow-y: scroll;
+          overflow-x: hidden;
+          max-height: @item-max-height;
+        }
+
+        .clip-item-info-data-main {
+          border-radius: 20px;
+          width: @item-main-with-failure;
+          word-break: break-all;
+          white-space: pre-wrap;
+          flex-direction: column;
+        }
+        .clip-item-info-data-img-box {
+        position: relative;
+         
+
+          .clip-item-info-data-img-size {
+            position: absolute;
+            right: -40px;
+            top: 0;
+            background-color: @bg-color;
+          }
+
+          //每行中的图片样式
+          .clip-item-info-data-img {
+            max-height: 140px;
+            max-width: 90%;
+            box-shadow: 0px 0px 3px @shadow-color;
+          }
+
+        }
+
+
+      }
+    }
+
+    .tem-list-btn {
+      display: flex;
+      margin-left: -30px;
+
+    }
+
+  }
+
+  .footer-active {
+    transition: all 1s;
+    background-color: @footer-box-bg-color;
+    border-top-left-radius: 20px;
+  }
+
+  //根部固定的图标
+  .footer {
+    position: fixed;
+    bottom: 5px;
+    right: 0px;
+    width: 50px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+
+    &:hover {
+      transition: all 1s;
+      background-color: @footer-box-bg-color;
+      border-top-left-radius: 20px;
+    }
+
+
+    div {
+      width: 25px;
+      height: 45px;
+
+      img {
+        box-shadow: 1px 1px 1px 1px #333;
+        border-radius: 50%;
+        width: 100%;
+        opacity: .9;
+        padding: 8px;
+
+        //鼠标悬停时加深样式
+        &:hover {
+          transition: all 0.5s;
+          background-color: @footer-box-primary-color;
+          box-shadow: 2px 2px 2px 2px #333;
+
+        }
+      }
+    }
+
+  }
+
+}

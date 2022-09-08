@@ -1,0 +1,40 @@
+// 初始化变量文件
+//不论什么主题下都通用的变量
+@scrollWidth:8px;//滚动条的宽度
+@item-max-height:200px;//列表最大高度
+@item-main-with:450px;//列表主题宽度
+@item-main-with-failure:600px;//列表主题宽度
+//明亮主题
+.light-scheme(){
+  @bg-color: #fff;
+  @border-color: #eeeaf3;
+  @bg-list-active-color: #eeeaf3; //列表选中激活时的背景颜色
+  @bg-list-active-batch-color:#95a9ea; //列表批量选中激活时的背景颜色
+  @shadow-color: #333;
+  @border-active-color: #3271ae; //选中激活时列表边框颜色
+  @text-color: #333; //文字颜色
+  @text-bg-color: rgba(138, 138, 138, 0.512);
+  @input-placeholder-color:rgb(138, 138, 138);
+  @bg-item-time-color:#a1a0a0;
+  @nav-bg-color: #eeeeee;
+  @nav-active-bg-color: #dedede;
+  @nav-hover-bg-color: #dedede;
+  //按钮样式
+  @primary-color:#16b5e9;
+  @primary-text-color:#f0faff;
+   //弹窗样式
+   @bg-confirm-header-color:#e8f8fd;
+   //底部工具集
+   @footer-box-bg-color: rgba(138, 138, 138, 0.619);
+   @footer-box-primary-color: rgba(64,158,255, 0.619);
+}
+//黑暗主题
+.dark-scheme(){
+  //此处先用明亮-后续再设计颜色搭配
+  .light-scheme();
+}
+//无主题时的适配
+.no-preference-scheme(){
+  //此处先用明亮
+  .light-scheme()
+}

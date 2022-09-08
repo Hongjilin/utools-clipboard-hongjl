@@ -1,0 +1,89 @@
+    /*设置动画*/
+    .fade-enter,
+    .fade-leave-to {
+      transform: translateX(-100%);
+      border-radius: 100%;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: all .5s;
+    }
+
+    .fade-enter-to {
+      transform: translateX(0);
+      opacity: .9;
+      border-radius: 0px;
+    }
+
+    //详情页面样式
+    .detail-box {
+      overflow: hidden;
+      z-index: 999;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    
+
+      .layout {
+        height: 100%;
+        width: 30%;
+        color: @text-color;
+        background: gray;
+        opacity: 0.6;
+      }
+
+      .item-list-detail-box {
+        position: relative;
+        height: 100%;
+        width: 70%;
+        color: @text-color;
+        background: @bg-color;
+        overflow-y: scroll;
+  
+        .item-list-detail-text{
+          width: 100%;
+                word-break: break-all;
+        white-space: pre-wrap;
+        }
+        .item-list-detail-code{
+          width: 100%;
+          margin-top: 40px;
+          border-radius: 20px;
+          overflow: hidden;
+          word-break: break-all;
+        white-space: pre-wrap;
+        }
+        
+        .item-list-detail-file{
+          width: 100%;
+        }
+        .item-list-detail-btn{
+          position: absolute;
+          right: 0;
+          top: 0;
+          display: flex;
+          justify-content: end;
+          div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-right: 10px;
+            margin-left: 10px;
+            width: 60px;
+            height: 30px;
+            background-color:  @primary-color;
+            opacity: .8;
+            &:hover{
+              border-width: 0px 1px 0px 1px; //边框宽度设置为1px
+              box-shadow: 0px 0px 2px @shadow-color;//阴影效果
+            }
+          }
+        }
+      }
+
+    }

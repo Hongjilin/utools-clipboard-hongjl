@@ -1,0 +1,44 @@
+.message-box{
+  position: fixed;
+  z-index: 99999;
+  width: 80px;
+  height: 28px;
+  font-size: 18px;
+
+  border-radius: 5px;
+  overflow: hidden;
+  top: 55px;
+  left: 45%;
+
+    /*设置动画*/
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+      transform: translateX(-100%);
+      border-radius: 100%;
+    }
+  
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: all .5s;
+    }
+  
+    .fade-enter-to {
+      transform: translateX(0);
+      opacity: 0;
+      border-radius: 0px;
+    }
+  
+  .success{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: greenyellow;
+  }
+  .error{
+    display:inline;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+  }
+}
