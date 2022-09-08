@@ -170,7 +170,7 @@ module.exports = {
         //如果不是全部，就都要进行搜索
          this.lazyLists  = this.dbLists.filter(item => item.data.indexOf(val) != -1 && item.type === type)
       }
-      this.lists =  this.lazyLists.splice(0, this.lazyIndex)
+      this.lists =  this.lazyLists.slice(0, this.lazyIndex)
     },
 
     lazyPage() {
@@ -182,11 +182,16 @@ module.exports = {
         //变量scrollHeight是滚动条的总高度  --防止误差，少一点
         var scrollHeight = (document.documentElement.scrollHeight || document.body.scrollHeight) - 1;
         //滚动条到底部的条件
-        if (scrollTop + windowHeight >= scrollHeight && this.lazyLists.length>=this.lazyIndex ) {
-          this.throttle(() => {
+        if (scrollTop + windowHeight >= scrollHeight ) {
+          if(this.lazyLists.length>=this.lazyIndex ){
+   this.throttle(() => {
             this.lazyIndex += 8
             this.filterLists()
           }, 1000)()
+          }else{
+             this.messageConfig({type:'success',msg:'到底了~'})
+          }
+       
         }
       })
     },

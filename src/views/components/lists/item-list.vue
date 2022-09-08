@@ -34,7 +34,7 @@
           <template v-if="item.type === 'text'">
             <div
               class=" clip-item-info-data-main-text"
-            >{{ item.data.split(`\n`).join(`\n`).trim() }}</div>
+            >{{ item.data.split(`\n`).join(`\n`) }}</div>
           </template>
          <template v-else-if="item.type === 'image'">
             <div class="clip-item-info-data-img-box">
@@ -44,7 +44,7 @@
           </template>
           <template v-else-if="item.type === 'html'">
             <div class="clip-item-info-data-main">
-              <!-- 如果是svg或者html形式的图片（前面放出了图片兼容），走到此行如果用trim()去空会报错，所以html类型不可直接用trim直接去除空格 -->
+              <!-- 如果是svg或者html形式的图片（前面放出了图片兼容） -->
               <prism-editor
                 class="my-editor height-200"
                 v-model="item.data.split(`\n`).join(`\n`)"
