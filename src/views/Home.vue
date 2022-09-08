@@ -174,6 +174,8 @@ module.exports = {
 
     lazyPage() {
       window.addEventListener("scroll", () => {
+        //如果不再列表页面或者详情页面,或者再定制页面,此定时器不执行
+        if(!(this.showPageName=='lists'||this.showPageName=='details')|| this.showCustom) return
         //变量scrollTop是滚动条滚动时，距离顶部的距离
         var scrollTop =
           document.documentElement.scrollTop || document.body.scrollTop;
