@@ -2,7 +2,7 @@ const path = require('path')
 //此方法 要感谢作者【inu255】，定时器进行读取会有问题，经过排查发现阻塞了，随后翻阅该作者的代码找到解决方案
 function newPromise(fn) {
   let a, b
-  var tmp = {
+  const tmp = {
     resolve(x) {
       if (this.pending) {
         a(x)
@@ -22,7 +22,7 @@ function newPromise(fn) {
     rejected: false,
   }
   /** @type {Promise<T>} */
-  var pms = new Promise(function (resolve, reject) {
+  const pms = new Promise(function (resolve, reject) {
     a = resolve
     b = reject
     if (fn) fn(tmp.resolve, tmp.reject)
