@@ -54,7 +54,7 @@ module.exports = {
   provide() {
     //定义全局
     return {
-      delCollectors: this.delCollectors //二次弹窗控制函数注入
+      delCollectors: this.delCollectors ,//二次弹窗控制函数注入
     };
   },
   components: {

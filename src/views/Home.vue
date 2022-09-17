@@ -163,7 +163,6 @@ module.exports = {
       let lists = [];
       //如果分类是全部，就只筛选搜索框内容
       if (type === "all") {
-        console.log('全部匹配：',reg)
         this.lazyLists = this.dbLists.filter(
           item => reg.test(item.data)
         );
@@ -174,7 +173,7 @@ module.exports = {
            reg.test(item.data) &&
             (item.type === type || item.type === "html")
         );
-      } else {
+      }else {
         //如果不是全部，就都要进行搜索
         this.lazyLists = this.dbLists.filter(
           item => reg.test(item.data) && item.type === type

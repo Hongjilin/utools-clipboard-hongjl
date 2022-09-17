@@ -31,7 +31,7 @@
 
 <script>
 module.exports = {
-    inject: ['showDetails','deleteOne','confirmConfig','collectorOne','delCollectors','messageConfig','copy'],
+    inject: ['showDetails','deleteOne','confirmConfig','collectorOne','delCollectors','messageConfig','copy','initCollectorsLists'],
   props: {
     item:{
       type:Object,
@@ -65,6 +65,8 @@ module.exports = {
             this.delCollectors(item)
              this.isShowCang= this.judeShouCang()
                this.messageConfig({type:'success',msg:'取消成功'})
+               //取消收藏后，需要刷新收藏页面
+               this.initCollectorsLists&&this.initCollectorsLists()
       // })
 
     },

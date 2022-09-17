@@ -19,7 +19,7 @@
       <div class="write-mode-lists-box">
       <!-- 正常的剪切板列表 -->
       <!-- <item-list-detail v-if="showDetail" :details="details"></item-list-detail> -->
-      <custom-mode-item-list  @show-details="showDetails"  :lists="collectorsLists" :custom="true"></custom-mode-item-list>
+      <custom-mode-item-list :key="itemListKey"  @show-details="showDetails"  :lists="collectorsLists" :custom="true"></custom-mode-item-list>
     </div>
     </div>
     <div v-else>当前收藏的剪切版为空（ALT+左键从剪切列表存入）</div>
@@ -33,6 +33,12 @@ module.exports = {
    customModeItemList: httpVueLoader('./custom-mode-item-list.vue'),
      ItemListDetail: httpVueLoader('./lists/item-list-detail.vue'),
   },
+    provide() {
+    //定义全局
+    return {
+      initCollectorsLists: this.initCollectorsLists ,//重置收藏列表函数
+    };
+  },
   props: {
         lists: {
       type: Array,
@@ -41,6 +47,7 @@ module.exports = {
   },
   data() {
     return {
+      itemListKey:0,
       collectorsLists:[],
       showDetail:false,
       details:{},
@@ -113,6 +120,10 @@ module.exports = {
       this.details = item
       //展示详情状态标识为true
       this.showDetail = true
+    },
+    initCollectorsLists(){
+      this.collectorsLists= window.DB.dataBase.collectors||[]
+      this.itemListKey++
     },
     handleRefresh(key) {
       if( this.enums[key]){
