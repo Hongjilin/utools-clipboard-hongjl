@@ -158,23 +158,26 @@ module.exports = {
       console.log("筛选！！！！！！！！！！！！！！！");
       const val = this.searchInput;
       const type = this.navTabType;
+      //记住，此处不可用全局g标识，因为test（）会复用之前的 lastIndex，导致的正则判断错误
+      var reg = new RegExp(val, "i");
       let lists = [];
       //如果分类是全部，就只筛选搜索框内容
       if (type === "all") {
+        console.log('全部匹配：',reg)
         this.lazyLists = this.dbLists.filter(
-          item => item.data.indexOf(val) != -1
+          item => reg.test(item.data)
         );
       } else if (type === "html" || type === "text") {
         //如果是文本或者html,筛选到一起
         this.lazyLists = this.dbLists.filter(
           item =>
-            item.data.indexOf(val) != -1 &&
+           reg.test(item.data) &&
             (item.type === type || item.type === "html")
         );
       } else {
         //如果不是全部，就都要进行搜索
         this.lazyLists = this.dbLists.filter(
-          item => item.data.indexOf(val) != -1 && item.type === type
+          item => reg.test(item.data) && item.type === type
         );
       }
       this.lists = this.lazyLists.slice(0, this.lazyIndex);
