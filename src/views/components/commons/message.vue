@@ -4,8 +4,9 @@
 <template>
   <div class="message-box">
     <transition name="fade">
-      <div v-if="config.type=='success'" class="success">{{config.msg}}</div>
-      <div v-else class="error">{{config.msg}}</div>
+      <!-- <div v-if="config.type=='success'" class="success">{{config.msg}}</div> -->
+      <div v-if="config.type=='success'" class="message-box-btn success"><span>{{config.msg}}</span></div>
+      <div v-else class="message-box-btn error"><span>{{config.msg}}</span></div>
     </transition>
   </div>
 </template>

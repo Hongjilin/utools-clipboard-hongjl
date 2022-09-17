@@ -1,14 +1,15 @@
 .message-box{
   position: fixed;
   z-index: 99999;
-  width: 80px;
-  height: 28px;
+  height: 35px;
   font-size: 18px;
-
   border-radius: 5px;
   overflow: hidden;
+  margin:auto;
+  left:0;
+  right:0;
   top: 55px;
-  left: 45%;
+  // left: 45%;
 
     /*设置动画*/
     .fade-enter,
@@ -28,17 +29,31 @@
       opacity: 0;
       border-radius: 0px;
     }
-  
-  .success{
-    display: flex;
-    align-items: center;
+  .message-box-btn{
+    //宽度自适应
+    width:fit-content;
+    //居中
+    margin:auto;
+    min-width: 100px;
+    display:flex;
     justify-content: center;
-    background-color: greenyellow;
+    align-items: center;
+
+    height: 100%;
+    border-radius:5px;
+    border-width: 1px 1px 1px 1px; //边框宽度设置为1px
+    span{
+      margin: 10px;
+    }
+  }
+  .success{
+    background-color: #f0f9eb;
+    color: #67c23a;
+    box-shadow: 0px 0px 1px #67c23a; //阴影效果
   }
   .error{
-    display:inline;
-    align-items: center;
-    justify-content: center;
-    background-color: red;
+    background-color: #fef0f0;
+    color: #f56c6c;
+    box-shadow: 0px 0px 1px #f56c6c; //阴影效果
   }
 }

@@ -152,7 +152,7 @@ module.exports = {
         //  this.deleteOne(item)
 
       }else{
-          this.messageConfig({type:'error',msg:'最少两条'})
+          this.messageConfig({type:'error',msg:'最少需选中两条文本才能进行此操作'})
       }
     },
     //批量删除
