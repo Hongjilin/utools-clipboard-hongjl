@@ -17,7 +17,7 @@ const getSmallImgFile = (files) => {
     const fileName = file.name
     const filePath = file.path
     //(2)如果文件是图片类型，我们进一步判断文件大小，如果小于100KB就当作图片渲染
-    if (/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(fileName)) {
+    if (/\.(gif|jpg|jpeg|png|GIF|JPG|PNG|svg)$/.test(fileName)) {
       //(2-1)通过fs获取文件，随后获取文件大小
       const stats = fs.statSync(filePath)
       const fileSizeInBytes = Number(stats['size'])
