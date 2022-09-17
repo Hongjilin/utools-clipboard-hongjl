@@ -21,7 +21,7 @@
       </div>
       <div class="main-box">
         <!-- 自定义剪切板  --里面还会调用剪切板列表组件，所以一些控制函数也要传入 -->
-        <custom-mode :lists.sync="lists" v-if="showCustom"></custom-mode>
+        <custom-mode :lists.sync="collectorsLists" ref="customMode" v-if="showCustom"></custom-mode>
         <!-- 正常的剪切板列表 -->
         <item-list
           v-else
@@ -60,12 +60,14 @@ module.exports = {
       showDetails: this.showDetails, //控制显示详情界面的函数
       messageConfig: this.messageConfig, //提示弹窗注入
       loadingConfig: this.loadingConfig, //加载组件注入
+      filterCollectors: this.filterCollectors, //筛选收藏列表
       copy: this.copy //提示弹窗注入
     };
   },
 
   data() {
     return {
+      collectorsLists:[],
       loading:false,
       searchInput: "",
       dbLists: [], //存放从存储库中取到的list
@@ -173,6 +175,11 @@ module.exports = {
            reg.test(item.data) &&
             (item.type === type || item.type === "html")
         );
+      }else if (type === "custom") {
+        //如果是定制页面，就调用专属的筛选
+         this.$nextTick(()=>{
+           this.$refs.customMode&&this.$refs.customMode.initCollectorsLists()
+         })
       }else {
         //如果不是全部，就都要进行搜索
         this.lazyLists = this.dbLists.filter(
@@ -180,6 +187,19 @@ module.exports = {
         );
       }
       this.lists = this.lazyLists.slice(0, this.lazyIndex);
+    },
+    //筛选收藏列表
+    filterCollectors(){
+        const val = this.searchInput;
+      //记住，此处不可用全局g标识，因为test（）会复用之前的 lastIndex，导致的正则判断错误
+      var reg = new RegExp(val, "i");
+        //如果是文本或者html,筛选到一起
+        const collectorsLists= window.DB.dataBase.collectors||[]
+        const lazyLists =collectorsLists.filter(
+          item => reg.test(item.data) 
+        );
+        console.log(lazyLists," this.lazyIndex")
+       return lazyLists
     },
 
     lazyPage() {

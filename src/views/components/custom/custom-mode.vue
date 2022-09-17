@@ -28,7 +28,7 @@
 
 <script>
 module.exports = {
-      inject: ['copy'],
+      inject: ['copy','filterCollectors'],
     components: {
    customModeItemList: httpVueLoader('./custom-mode-item-list.vue'),
      ItemListDetail: httpVueLoader('./lists/item-list-detail.vue'),
@@ -112,7 +112,7 @@ module.exports = {
   },
   mounted() {
     console.log("重新加载")
-    this.collectorsLists= window.DB.dataBase.collectors||[]
+    this.collectorsLists=this.filterCollectors()||[]
   },
   methods: {
         showDetails(item) {
@@ -122,13 +122,13 @@ module.exports = {
       this.showDetail = true
     },
     initCollectorsLists(){
-      this.collectorsLists= window.DB.dataBase.collectors||[]
+      this.collectorsLists= this.filterCollectors()||[]
       this.itemListKey++
     },
     handleRefresh(key) {
       if( this.enums[key]){
         //刷新的时候，也要重新获取一次收藏列表，防止刷新的时候页面带入旧的收藏数据，造成收藏取消失败的假象
-       this.collectorsLists= window.DB.dataBase.collectors||[]
+       this.collectorsLists= this.filterCollectors()||[]
        const length=this.enums[key].length-1
        this.writeModeLists[key].data= this.enums[key]?.[Math.floor(Math.random()*100%length)]||'暂无随机值'
         console.log("随机！！！！！",length,Math.random()*100%length)
