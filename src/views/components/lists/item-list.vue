@@ -94,7 +94,6 @@ module.exports = {
   },
   data() {
     return {
-      code: "console.log('hello world')",
       activeIndex: 0, //默认选中列表第一位
       selectActiveIds: [],
       ss: "ssssss重新出现在重新注册自行车",
@@ -102,25 +101,16 @@ module.exports = {
     };
   },
   mounted() {
-    console.log(
-      formatDateToString(new Date().getTime()),
-      "utilsutilsutilsutilsutilsutils"
-    );
     this.initAddEventListenerKey();
     //初始化时聚焦
     window.focus();
   },
   beforeDestroy() {
-    console.log('组件销毁！！！！！！！！！！！！！！！！！！！')
     this.removeEventListenerKey()
   },
   watch: {
     lists: {
       handler(val) {
-        console.log(
-          "列表刷新！！！！！！！！！！！！！！！！！！！！！！！！！！！",
-          val
-        );
       },
       deep: true
     }
@@ -129,11 +119,9 @@ module.exports = {
     mouseDown() {
 
       this.isMouseDown = true
-      console.log('鼠标单击事件')
     },
     mouseUp() {
       this.isMouseDown = false
-      console.log('鼠标抬起单击事件')
     },
 
     //单个删除
@@ -166,20 +154,14 @@ module.exports = {
       }else{
           this.messageConfig({type:'error',msg:'最少两条'})
       }
-      console.log('聚合复制',str)
     },
     //批量删除
     batchDelete() {
       const temp = [];
-      console.log(
-        "批量删除的函数！！！！！！！！！！！！！！！！！",
-        this.dblists
-      );
       this.dblists.map(item => {
         if (this.selectActiveIds.indexOf(item.id) == -1) temp.push(item);
       });
       // this.lists = temp
-      console.log("批量删除的函数11！！！！！！！！！！！！！！！！！", temp);
       this.selectActiveIds = [];
       window.DB.dataBase.data = temp;
       this.$emit("init-db-lists");
@@ -249,7 +231,6 @@ module.exports = {
     //按钮按下事件的处理
     EventListenerKeyDownFunc(e) {
       const { key, ctrlKey, metaKey, altKey } = e;
-      console.log(key, "yyyyyyyyyyyyyy");
       //当前是否按下ctrl，存到全局中，因为多处地方会调用文件列表，所以不可以直接用父子组件传，不然耦合性太高
       window.isCtrlKey = ctrlKey || metaKey;
       switch (key) {
@@ -278,7 +259,6 @@ module.exports = {
         //当你按下了回车键【Enter】
         case "Enter": {
           //当你按下了回车键，按照当前的下标查找到对应的剪切板数据，同时粘贴到页面上
-          console.log("按下了回车键！！！！！！1", this.lists[this.activeIndex])
           const item = this.lists[this.activeIndex]
           this.copy(item);
           window.paste();
@@ -291,7 +271,6 @@ module.exports = {
         }
         //当你按下了【Alt】
         case "Alt": {
-          console.log("anxialeAlt");
           window.Alt = true;
           break;
         }
@@ -354,7 +333,6 @@ module.exports = {
     },
     //鼠标左键双击事件
     handleItemBblclick(ev, item) {
-      console.log('双击！！！！！', item)
       this.copy(item);
       window.paste();
     },
@@ -397,7 +375,6 @@ module.exports = {
         this.copy(item);
         window.paste();
       }
-      console.log("xzczxczxcxz", button);
     }
   }
 };

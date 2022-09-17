@@ -146,7 +146,6 @@ module.exports = {
         //获取最新的一个数据
         const now = window.DB.dataBase.data[0];
         if (lastCopy?.id !== now?.id) {
-          console.log("定时器进行更新", window.DB.dataBase.data);
           // 有更新
           this.dbLists = window.DB.dataBase.data;
           lastCopy = now;
@@ -157,7 +156,6 @@ module.exports = {
 
     //筛选显示数组列表
     filterLists() {
-      console.log("筛选！！！！！！！！！！！！！！！");
       const val = this.searchInput;
       const type = this.navTabType;
       //记住，此处不可用全局g标识，因为test（）会复用之前的 lastIndex，导致的正则判断错误
@@ -198,7 +196,6 @@ module.exports = {
         const lazyLists =collectorsLists.filter(
           item => reg.test(item.data) 
         );
-        console.log(lazyLists," this.lazyIndex")
        return lazyLists
     },
 
@@ -240,7 +237,6 @@ module.exports = {
     throttle(callback, delay) {
       let timer;
       return function() {
-        console.log();
         if (timer) {
           return;
         }
@@ -254,7 +250,6 @@ module.exports = {
     },
     //初始化db数据的时候要重新筛选当前剪切板列表
     initDbLists(dbLists) {
-      console.log("初始化dbimage.png", window.DB.dataBase.data);
       this.dbLists = dbLists || window.DB.dataBase.data;
       this.filterLists();
     },
@@ -264,7 +259,6 @@ module.exports = {
       this.confirmConfigData = config;
       this.showConfim = true;
       window.confirmFunc = fn;
-      console.log("全局注入的函数");
     },
     messageConfig(config = {}, time = 800) {
       this.messageConfigData = config;
@@ -302,7 +296,6 @@ module.exports = {
     },
     //获取当前的类型--默认全部
     getNavTabType(type = "all") {
-      console.log("父组件");
       this.navTabType = type;
     }
   }

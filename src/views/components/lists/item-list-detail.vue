@@ -33,7 +33,6 @@ module.exports = {
   methods: {
      //按钮事件 --默认给值赋值
     handleItemClick(type='copy') {
-      console.log(type,"typetypetypetype")
       const data =this.details
       if (type === 'paste') {
         //  复制后粘贴

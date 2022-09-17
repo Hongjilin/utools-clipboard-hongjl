@@ -72,7 +72,6 @@ module.exports = {
     },
 
     deleteOneConfig(item){
-      console.log("xxxxxxxxxxxxxxxxx",item)
          this.confirmConfig({ title: '删除', msg: '确定删除该记录？' }, () => {
          this.deleteOne(item)
            this.messageConfig({type:'success',msg:'删除成功'})

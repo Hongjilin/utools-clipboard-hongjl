@@ -76,23 +76,17 @@ module.exports = {
   },
   mounted() {
     this.lazyLists = this.lists.slice(0, this.lazyLists);
-    console.log(
-      formatDateToString(new Date().getTime()),
-      "utilsutilsutilsutilsutilsutils"
-    );
     this.initAddEventListenerKey();
     window.addEventListener("scroll", this.scrollLazyFunc, false);
     //初始化时聚焦
     window.focus();
   },
   beforeDestroy() {
-    console.log("组件销毁！！！！！！！！！！！！！！！！！！！");
     this.removeEventListenerKey();
     window.removeEventListener("scroll", this.scrollLazyFunc, false);
   },
   methods: {
     scrollLazyFunc() {
-      console.log("滚动i!!!!!!!!!!!!!!!!!!!");
       //变量scrollTop是滚动条滚动时，距离顶部的距离
       const scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
@@ -118,8 +112,6 @@ module.exports = {
             this.lazyLists = this.lists.slice(0, this.lazyIndex);
           }, 500)();
         } else {
-                 console.log(this.lists.length >= this.lazyIndex,this.lists.length , this.lazyIndex,"zxczxczxczxczxczxzx")
-
             //  this.messageConfig({type:'success',msg:'到底了~'})
         }
       }
@@ -128,7 +120,6 @@ module.exports = {
     throttle(callback, delay) {
       let timer;
       return function() {
-        console.log();
         if (timer) {
           return;
         }
@@ -233,7 +224,6 @@ module.exports = {
     //鼠标点击事件，左键点击复制+粘贴，右键只有复制
     handleItemClick(ev, item) {
       const { button } = ev;
-      console.log(button, "当前按钮项目");
       if (button === 0) {
         // 左键 复制后粘贴
         this.copy(item);

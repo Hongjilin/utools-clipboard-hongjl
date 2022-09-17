@@ -38,7 +38,6 @@ module.exports = {
     },
   },
   mounted() {
-    console.log(this.info,"this.infothis.infothis.info")
   },
   methods: {
     //展示当前记录的详情页面
