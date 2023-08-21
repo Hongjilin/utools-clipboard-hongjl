@@ -4,9 +4,13 @@
 const crypto = require('crypto') //加密工具
 const fs = require('fs')
 const time = require('./timLoop/index')
+const mock = require('./mock1.json')
 const { clipboard } = require('electron') //
 //引入配置的变量
 const { SCHEDULE_TIME } = require('../config/h-config')
+const getMockDara=()=>{
+  return mock
+}
 
 //0 - 获取小图片文件   --非常重要的操作，关乎性能
 const getSmallImgFile = (files) => {
@@ -194,4 +198,5 @@ module.exports = {
   formatDateToString,
   formatDateToTime,
   throttle,
+  getMockDara
 }

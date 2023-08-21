@@ -3,12 +3,15 @@
   width:100%;
   padding: 10px;
 }
-
+.rx-line{
+  display: flex;
+  justify-content: flex-start;
+}
 .my-editor {
   background: #2d2d2d;
   color: #ccc;
-  overflow-y: scroll;
-  max-height:  @item-max-height;
+  // overflow-y: scroll;
+  // max-height:  @item-max-height;
   border-radius: 8px;
   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   font-size: 14px;
@@ -27,4 +30,19 @@
 
 .prism-editor__textarea:focus {
   // outline: none;
+}
+
+.my-editor /deep/ .prism-editor__textarea::selection{ // 鼠标选中时样式
+  background-color: #cce2ff !important;
+  color: #000 !important;
+  user-select:none;
+}
+
+.my-editor /deep/ .prism-editor__textarea:focus { // 鼠标点击触发时样式
+    border: 0px solid #007bff;
+    outline: none; 
+}
+
+.my-editor /deep/ .prism-editor__line-numbers{ // 代码块跟行号的距离
+  padding-right: 10px;
 }

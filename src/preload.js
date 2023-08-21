@@ -6,7 +6,11 @@
   paste,
   formatDateToString,
   formatDateToTime,
+  getMockDara
 }=utils
+//引入子封装的utils
+const checkUtils=require('./utils/check.js')
+utils.checkUtils=checkUtils
 const crypto = require('crypto') //加密工具
 const { clipboard } = require('electron') //
 
@@ -17,10 +21,14 @@ const { IS_FS_DB } = config
 const DB = require('./model/fs-db.js')
 //引入自己封装的uTools存储对象，使用此对象可以将数据存入uTools文档中--一般用来存取配置项，就能兼容有会员的同学不用手动搬本地文件了
 const uTools_db=require('./model/utools-db.js')
+
 // //根据是否文件形式存储引入不同的db初始化构造文件
 // const DB = IS_FS_DB ? fs_db : uTools_db
 //存储的数据
 const { dataBase } = DB
+
+
+
 /* *********************************************** S：调用工具函数  *********************************************** */
 scheduleClipboard(dataBase, (item) => {
   // 此函数不断执行
@@ -44,9 +52,9 @@ utools.onPluginEnter(() => {
   // num++
   // const data={num,data:'测试db数据存入1',xx:'xxxxxx'}
   // uTools_db.put('config',data)
-  document.querySelector('#nav-search-input').select() // 进入插件将搜索框内容全选
-  focus()
-  toTop()
+  // document.querySelector('#nav-search-input').select() // 进入插件将搜索框内容全选
+  // focus()
+  // toTop()
 })
 /* *********************************************** S：一些方法的二次封装  *********************************************** */
 //仅粘贴然后不进入剪切板--聚合搜索时可用
@@ -94,6 +102,7 @@ const onlyPasteThenClear = (item) => {
 window.DB = DB
 window.uTools_db=uTools_db
 //将uTools的复制粘贴api封装后挂在到全局上
+window.getMockDara = getMockDara
 window.copy = copy
 window.utils = utils
 window.onlyPasteThenClear = onlyPasteThenClear

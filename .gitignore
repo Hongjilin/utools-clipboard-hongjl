@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+/dist
+/buildHistory
+prismjs
+
+
+yarn.lock
+
+dist.zip

@@ -1,0 +1,335 @@
+{
+  "countSettleMedAmt": "927839.42",
+  "daySettleExamineData": [
+      {
+          "dayHiSettleNum": "1068",
+          "dayHsecfcSettleNum": "525",
+          "dayMpcSettleNum": "439",
+          "$R.daySettleDate": "2023-08-0111111",
+          "fundPaySumamt": "927225.42",
+          "medfeeSumamt":{
+           "a":"1486554.49",
+           "b":{"x":"xxxxxx"},
+           "c":"1486554.49"
+          }
+      }
+  ],
+  "deptNameSetlHsecfcNumList": [
+      {
+          "deptName": "重症肝病科门诊【10272】",
+          "deptNameSettleNum": "68"
+      },
+      {
+          "deptName": "肝胆胰外科门诊【10137】",
+          "deptNameSettleNum": "47"
+      },
+      {
+          "deptName": "代谢性肝病科门诊【10134】",
+          "deptNameSettleNum": "41"
+      },
+      {
+          "deptName": "中西医结合科门诊【10270】",
+          "deptNameSettleNum": "40"
+      },
+      {
+          "deptName": "血透门诊（西洪院区）【10311】",
+          "deptNameSettleNum": "40"
+      },
+      {
+          "deptName": "感染科门诊【10309】",
+          "deptNameSettleNum": "29"
+      },
+      {
+          "deptName": "血透门诊【10241】",
+          "deptNameSettleNum": "22"
+      },
+      {
+          "deptName": "慢性肝病科门诊【10266】",
+          "deptNameSettleNum": "21"
+      },
+      {
+          "deptName": "急诊科（西洪）【10323】",
+          "deptNameSettleNum": "21"
+      },
+      {
+          "deptName": "关爱门诊【10273】",
+          "deptNameSettleNum": "20"
+      }
+  ],
+  "deptNameSettleNumList": [
+      {
+          "deptName": "重症肝病科门诊",
+          "deptNameSettleNum": "120"
+      },
+      {
+          "deptName": "代谢性肝病科门诊",
+          "deptNameSettleNum": "70"
+      },
+      {
+          "deptName": "中西医结合科门诊",
+          "deptNameSettleNum": "62"
+      },
+      {
+          "deptName": "肝胆胰外科门诊",
+          "deptNameSettleNum": "57"
+      },
+      {
+          "deptName": "慢性肝病科门诊",
+          "deptNameSettleNum": "27"
+      },
+      {
+          "deptName": "妊娠及中毒肝病科门诊",
+          "deptNameSettleNum": "26"
+      },
+      {
+          "deptName": "非病毒性肝病科门诊",
+          "deptNameSettleNum": "25"
+      },
+      {
+          "deptName": "急诊科",
+          "deptNameSettleNum": "24"
+      },
+      {
+          "deptName": "脂肪肝健康管理中心",
+          "deptNameSettleNum": "16"
+      },
+      {
+          "deptName": "肿瘤科门诊",
+          "deptNameSettleNum": "8"
+      }
+  ],
+  "drNameSetlHsecfcNumList": [
+      {
+          "drName": "高海兵",
+          "drNameSettleNum": "54"
+      },
+      {
+          "drName": "林春",
+          "drNameSettleNum": "32"
+      },
+      {
+          "drName": "刘路",
+          "drNameSettleNum": "29"
+      },
+      {
+          "drName": "孔金峰",
+          "drNameSettleNum": "26"
+      },
+      {
+          "drName": "郑丽萍",
+          "drNameSettleNum": "25"
+      },
+      {
+          "drName": "林恢",
+          "drNameSettleNum": "22"
+      },
+      {
+          "drName": "赖婉莲",
+          "drNameSettleNum": "22"
+      },
+      {
+          "drName": "杨惠安",
+          "drNameSettleNum": "21"
+      },
+      {
+          "drName": "潘晨",
+          "drNameSettleNum": "20"
+      },
+      {
+          "drName": "李海涛",
+          "drNameSettleNum": "20"
+      }
+  ],
+  "drNameSettleNumList": [
+      {
+          "drName": "高海兵",
+          "drNameSettleNum": "92"
+      },
+      {
+          "drName": "林春",
+          "drNameSettleNum": "46"
+      },
+      {
+          "drName": "林恢",
+          "drNameSettleNum": "37"
+      },
+      {
+          "drName": "孔金峰",
+          "drNameSettleNum": "27"
+      },
+      {
+          "drName": "柴一红",
+          "drNameSettleNum": "26"
+      },
+      {
+          "drName": "李海涛",
+          "drNameSettleNum": "25"
+      },
+      {
+          "drName": "甘巧蓉",
+          "drNameSettleNum": "25"
+      },
+      {
+          "drName": "张平",
+          "drNameSettleNum": "24"
+      },
+      {
+          "drName": "江亚彬",
+          "drNameSettleNum": "18"
+      },
+      {
+          "drName": "林榕森",
+          "drNameSettleNum": "18"
+      }
+  ],
+  "enablePayChnls": [
+    {
+      "payChnlId": "WX_PAY",
+      "payChnlName": "微信"
+  },
+    {
+      "payChnlId": "CHS_APP_PAY",
+      "payChnlName": "医保APP"
+  }
+  ],
+  "unablePayChnls": [
+
+  {
+    "payChnlId": "ALI_PAY",
+    "payChnlName": "支付宝"
+}
+
+  ],
+  "payChnlSettleData": [
+    {
+        "payChnlName": "微信",
+        "payChnlSettleNum": "3",
+        "payChnlType": "WX_PAY"
+    }, 
+      {
+      "payChnlId": "ALI_PAY",
+      "payChnlSettleNum": "6",
+      "payChnlName": "支付宝"
+  }
+],
+  "hsecfcCountSettleNum": "527",
+  "hsecfcCountSettleRate": "49.07",
+  "hsecfcScenesData": [
+      {
+          "pzSettleCount": "1163",
+          "rate": "78.74",
+          "scene": "01101",
+          "scenesName": "挂号"
+      },
+      {
+          "pzSettleCount": "234",
+          "rate": "15.84",
+          "scene": "01301",
+          "scenesName": "支付"
+      },
+      {
+          "pzSettleCount": "43",
+          "rate": "2.91",
+          "scene": "04107",
+          "scenesName": "线上移动支付"
+      },
+      {
+          "pzSettleCount": "36",
+          "rate": "2.44",
+          "scene": "101",
+          "scenesName": "挂号"
+      },
+      {
+          "pzSettleCount": "1",
+          "rate": "0.07",
+          "scene": "110",
+          "scenesName": "信息查询"
+      }
+  ],
+  "leftHsecfcScenesData": [
+      {
+          "pzSettleCount": "1163",
+          "rate": "78.74",
+          "scene": "01101",
+          "scenesName": "挂号"
+      },
+      {
+          "pzSettleCount": "0",
+          "rate": "0",
+          "scene": "01306",
+          "scenesName": "就诊"
+      },
+      {
+          "pzSettleCount": "234",
+          "rate": "15.84",
+          "scene": "01301",
+          "scenesName": "支付"
+      },
+      {
+          "pzSettleCount": "0",
+          "rate": "0",
+          "scene": "01302",
+          "scenesName": "取药"
+      },
+      {
+          "pzSettleCount": "0",
+          "rate": "0",
+          "scene": "01303",
+          "scenesName": "取报告"
+      },
+      {
+          "pzSettleCount": "43",
+          "rate": "2.91",
+          "scene": "04107",
+          "scenesName": "其他医保应用场景"
+      },
+      {
+          "pzSettleCount": "37",
+          "rate": "2.51",
+          "scene": "110",
+          "scenesName": "其他非法场景值"
+      }
+  ],
+  "mpcCountSettleNum": "439",
+  "mpcCountSettleRate": "40.88",
+
+  "rightHsecfcScenesData": [
+      {
+          "pzSettleCount": "1163",
+          "rate": "78.74",
+          "scene": "01101",
+          "scenesName": "挂号"
+      },
+      {
+          "pzSettleCount": "0",
+          "rate": "0",
+          "scene": "01306",
+          "scenesName": "就诊"
+      },
+      {
+          "pzSettleCount": "234",
+          "rate": "15.84",
+          "scene": "01301",
+          "scenesName": "支付"
+      },
+      {
+          "pzSettleCount": "0",
+          "rate": "0",
+          "scene": "01302",
+          "scenesName": "取药"
+      },
+      {
+          "pzSettleCount": "0",
+          "rate": "0",
+          "scene": "01303",
+          "scenesName": "取报告"
+      },
+      {
+          "pzSettleCount": "80",
+          "rate": "5.42",
+          "scene": "110",
+          "scenesName": "其他医保应用场景"
+      }
+  ]
+ 
+}

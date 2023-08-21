@@ -88,11 +88,13 @@ var Prism = (function (_self) {
 		 */
 		util: {
 			encode: function encode(tokens) {
+
 				if (tokens instanceof Token) {
 					return new Token(tokens.type, encode(tokens.content), tokens.alias);
 				} else if (Array.isArray(tokens)) {
 					return tokens.map(encode);
 				} else {
+          const token=tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ')
 					return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 				}
 			},
@@ -500,6 +502,7 @@ var Prism = (function (_self) {
 		 * @public
 		 */
 		highlightAll: function (async, callback) {
+      console.log('G高亮素有所有')
 			_.highlightAllUnder(document, async, callback);
 		},
 
@@ -565,6 +568,7 @@ var Prism = (function (_self) {
 		 * @public
 		 */
 		highlightElement: function (element, async, callback) {
+      console.log('具体的!!!!!!!!!!!高亮操作')
 			// Find language
 			var language = _.util.getLanguage(element);
 			var grammar = _.languages[language];
@@ -658,11 +662,12 @@ var Prism = (function (_self) {
 		 * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
 		 */
 		highlight: function (text, grammar, language) {
+      console.log('高亮组件函数1!!!!!!!')
 			var env = {
 				code: text,
 				grammar: grammar,
 				language: language
-			};
+      };
 			_.hooks.run('before-tokenize', env);
 			if (!env.grammar) {
 				throw new Error('The language "' + env.language + '" has no grammar.');
@@ -697,7 +702,8 @@ var Prism = (function (_self) {
 		 * });
 		 */
 		tokenize: function (text, grammar) {
-			var rest = grammar.rest;
+      var rest = grammar.rest;
+      console.log('text',text,rest)
 			if (rest) {
 				for (var token in rest) {
 					grammar[token] = rest[token];
@@ -919,6 +925,7 @@ var Prism = (function (_self) {
 	 * @property {number} reach
 	 */
 	function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
+    console.log('matchGrammar',text)
 		for (var token in grammar) {
 			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
@@ -1109,7 +1116,6 @@ var Prism = (function (_self) {
 		node.next = newNode;
 		next.prev = newNode;
 		list.length++;
-
 		return newNode;
 	}
 	/**
@@ -1925,6 +1931,9 @@ Prism.languages.js = Prism.languages.javascript;
 		 * @param {ParentNode} [container=document]
 		 */
 		highlight: function highlight(container) {
+      console.log(
+        '11111111111111111刚好两高亮'
+      )
 			var elements = (container || document).querySelectorAll(SELECTOR);
 
 			for (var i = 0, element; (element = elements[i++]);) {
@@ -1936,6 +1945,9 @@ Prism.languages.js = Prism.languages.javascript;
 	var logged = false;
 	/** @deprecated Use `Prism.plugins.fileHighlight.highlight` instead. */
 	Prism.fileHighlight = function () {
+    console.log(
+      '11111111111111111刚好两高亮111'
+    )
 		if (!logged) {
 			console.warn('Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.');
 			logged = true;

@@ -1,39 +1,24 @@
 <template>
   <div id="home" class="home">
-    <!-- transition实现动画效果 -->
-    <transition name="fade">
-      <div class="detail-box" v-if="showPageName=='details'">
-        <item-list-detail :details="details"></item-list-detail>
-        <div class="layout" @click="closeDetails"></div>
-      </div>
-    </transition>
+<!--      
+<prism-editor
+                class="my-editor height-300"
+                v-model="mockDataCom1"
+                :highlight="highlighter"
+                :line-numbers="true"
 
-    <message v-if="showMessage" :config="messageConfigData"></message>
-    <loading v-if="loading" :config="messageConfigData"></loading>
-    <confirm v-if="showConfim" :config="confirmConfigData" @close="confirmClose"></confirm>
-    <readme v-if="showPageName=='readme'" @close-readme="closeReadme"></readme>
-    <!-- 查看详情时不隐藏该列表 -->
-    <div v-if="showPageName=='lists'||showPageName=='details'">
-      <div class="header-box">
-        <nav-tabs ref="navTabs" @get-navtab-type="getNavTabType"></nav-tabs>
-        <nav-search @change-search-input="changeSearchInput"></nav-search>
-        <div class="hander-readme" @click.stop="openReadme">📑</div>
-      </div>
-      <div class="main-box">
-        <!-- 自定义剪切板  --里面还会调用剪切板列表组件，所以一些控制函数也要传入 -->
-        <custom-mode :lists.sync="collectorsLists" ref="customMode" v-if="showCustom"></custom-mode>
-        <!-- 正常的剪切板列表 -->
-        <item-list
-          v-else
-          @init-db-lists="initDbLists"
-          @clear-store="clearStore"
-          @show-details="showDetails"
-          :dblists="dbLists"
-          :lists="lists"
-          id="lists"
-        ></item-list>
-      </div>
-    </div>
+              ></prism-editor> -->
+             
+              <!-- <pre  class="line-numbers" >
+              <code class="language-xml line-numbers" v-text="mockDataCom1">
+            </code>
+              </pre> -->
+              <div class="my-editor-detail">
+
+           
+              <pre  class="line-numbers" v-html="mockDataCom1">
+             </pre>
+                </div>
   </div>
 </template>
 
@@ -41,15 +26,6 @@
 // 不能使用 export default
 module.exports = {
   components: {
-    ItemList: httpVueLoader("./components/lists/item-list.vue"),
-    NavTabs: httpVueLoader("./components/header/nav-tabs.vue"),
-    NavSearch: httpVueLoader("./components/header/nav-search.vue"),
-    ItemListDetail: httpVueLoader("./components/lists/item-list-detail.vue"),
-    CustomMode: httpVueLoader("./components/custom/custom-mode.vue"),
-    Readme: httpVueLoader("./components/commons/readme.vue"),
-    Confirm: httpVueLoader("./components/commons/confirm.vue"),
-    Message: httpVueLoader("./components/commons/message.vue"),
-    Loading: httpVueLoader("./components/commons/loading.vue")
   },
 
   provide() {
@@ -67,6 +43,9 @@ module.exports = {
 
   data() {
     return {
+       code: '/**\n* JS判断两个数组是否相22222222222222222222wqeqweqweqweqweqw导致擦速度22222222222222222222222222222222222222222222222222等\n* @param {Array} arr1\n* @param {Array} arr2\n* @returns {boolean} 返回true 或 false\n*/\nfunction arrayEqual(arr1, arr2) {\n    if (arr1 === arr2) return true;\n    if (arr1.length != arr2.length) return false;\n    for (var i = 0; i < arr1.length; ++i) {\n        if (arr1[i] !== arr2[i]) return false;\n    }\n    return true;\n}'
+,
+      mock:{},
       collectorsLists:[],
       loading:false,
       searchInput: "",
@@ -84,12 +63,85 @@ module.exports = {
       messageConfigData: {} //展示信息提示，且写入配置项
     };
   },
+  created(){
+      const mock = window.getMockDara()
+      const { checkRight, checkLeft,}=window.utils.checkUtils||{}
+      const objLeft = { "key": "123", "student": { "name": "zyu", "sex": "1" }, "value": { "city": "厦门" } }
+      const  objRight = { "key": "123", "$R.student": { "name": "zyu", "phone": "13163977252" }, "value1": "历史1", "$L.value": "历史" }
+      this.mock=objRight
+                 console.log(
+        'mockkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',
+       checkRight(objLeft,objRight)
+      )
+
+  },
   mounted() {
-    //初始化时两个都要初始化
-    this.dbLists = window.DB.dataBase.data;
-    this.lists = window.DB.dataBase.data;
-    this.addInterVal();
-    this.lazyPage();
+
+      //  Prism.highlightAll()
+  },
+  computed: {
+    mockDataCom() {
+
+      return JSON.stringify(this.mock) 
+      // return this.mock
+    },
+        mockDataCom1() {
+      const arr = JSON.stringify(this.mock).split(',') || []
+      let str = ''
+      let tierCount = 0
+      let Rregx = '$R.'
+      let Lregx = '$L.'
+   let baseElretract=`<div >  </div>`
+      const baseStr = '  '
+      const baseTier = 4
+      arr.forEach(item => {
+        let isRreg = false
+        let isLreg = false
+        if (item.indexOf(Rregx) !== -1) {
+          item = item.replace(Rregx, '')
+          isRreg = true
+        }    else  if (item.indexOf(Lregx) !== -1) {
+          item = item.replace(Lregx, '')
+          isLreg = true
+        }
+  
+        if (item.indexOf('{') !== -1) {
+          let before = ''
+          for (let i = 0; i < tierCount; i++) { before += baseStr }
+          tierCount = tierCount + baseTier
+          let later = ''
+          for (let i = 0; i < tierCount; i++) { later += baseStr }
+          item = item.replace('{', `\n${before}{\n${later}`)
+        }
+        if (item.indexOf('}') !== -1) {
+          let later = ''
+          if (item.indexOf('},') === -1) {
+            for (let i = 0; i < tierCount; i++) { later = '\n' }
+          }
+          tierCount = tierCount - baseTier
+          let before = ''
+          for (let i = 0; i < tierCount; i++) { before += baseStr }
+          item = item.replace('}', `\n${before}}${later}`)
+        }
+        let retract = baseStr
+        let elretract= baseElretract
+        for (let i = 0; i < tierCount; i++) {
+          retract += baseStr
+        }
+        for (let i = 0; i < tierCount/4; i++) {
+          elretract+=elretract
+        }
+        if (isRreg) {
+          str += '<div  style="background:#6f1313" class="rx-line">' +`${elretract}`+ item + `</div>`
+        } else if(isLreg){
+           str += '<div  style="background:#373d29" class="rx-line">'  +`${elretract}`+ item + `</div>`
+
+        } else { str += item + `,\n${retract}` }
+      })
+
+      return str
+    },
+
   },
   watch: {
     navTabType: {
@@ -275,6 +327,7 @@ module.exports = {
     //这是代码块所需的方法
     highlighter(code) {
       // js highlight example
+      console.log(Prism.highlight)
       return Prism.highlight(code, Prism.languages.js, "js");
     },
     //关闭二次弹窗的函数
@@ -302,8 +355,3 @@ module.exports = {
 };
 </script>
 
-<style>
-.main-box {
-  margin-top: 50px;
-}
-</style>

@@ -19,9 +19,9 @@
   "features": [
     {
       "code": "clipboard-hongjl",
-      "explain": "剪切板",
+      "explain": "JSON工具",
       "cmds": [
-        "剪切板开发","剪切板"
+        "JSON工具"
       ]
     }
   ]
